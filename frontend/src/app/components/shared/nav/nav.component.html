@@ -1,0 +1,17 @@
+<!--Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light blue accent-4">
+  <a [routerLink]="['/shop']" class="navbar-brand">Online-Shop</a>
+  <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+          data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a [routerLink]="['/shop']" class="nav-item nav-link active">Shop <span class="sr-only">(current)</span></a>
+      <a [routerLink]="['product']" class="nav-item nav-link">Product</a>
+    </div>
+  </div>
+  <app-header></app-header>
+</nav>
+<!--/.Navbar -->
+

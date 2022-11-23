@@ -1,0 +1,43 @@
+# Docker Engine release 18.06.0+
+version: "3.7"
+
+volumes:
+  mongodata:
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+    image: drinkler/microservices-backend:latest
+    environment:
+      - DB_CONNECTION=mongodb://root:LSuFDaaenPfdVMi4S@database:27017/online-shop?authSource=admin
+      - PORT=8080
+      - JWT_KEY="5AE34D147B8ADA82FB2FAA85DEC52"
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    restart: always
+
+  database:
+    container_name: database-mongo
+    image: mongo:4.2.5
+    env_file:
+      - ./database/database.env
+    restart: always
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - 8888:27017
+
+  frontend:
+    container_name: frontend-angular
+    build:
+      context: ./frontend
+    image: drinkler/microservices-frontend:latest
+    depends_on:
+      - backend
+    ports:
+      - 8081:80
+    restart: always
